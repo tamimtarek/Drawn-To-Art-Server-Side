@@ -29,7 +29,7 @@ async function run() {
     const craftCollection = client.db("craftDB").collection("craft");
     const subcategoryCollection = client.db("subcategoryDB").collection("subcategory");
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     app.get("/crafts", async (req, res) => {
       const cursor = craftCollection.find();
       const result = await cursor.toArray();
@@ -40,7 +40,9 @@ async function run() {
       console.log(req.params.email);
       const result = await craftCollection.find({email: req.params.email}).toArray();
       res.send(result);
-    })
+    }) 
+    // subcateroy
+   
     app.get('/crafts//:id', async(req, res)=>{
       const id = req.params.id;
       const query = {_id: new ObjectId(id)};
@@ -100,7 +102,7 @@ async function run() {
       res.send(result);
     })
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
