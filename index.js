@@ -87,6 +87,12 @@ async function run() {
       const result = await subcategoryCollection.find({subcategory_name: req.params.subcategory_name}).toArray();
       res.send(result);
     })
+    app.get('/subcategory//:id', async(req, res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await subcategoryCollection.findOne(query);
+      res.send(result);
+    })
     app.delete("/crafts/:id", async(req, res)=>{
       const id = req.params.id;
       const query = {_id: new ObjectId(id)};
